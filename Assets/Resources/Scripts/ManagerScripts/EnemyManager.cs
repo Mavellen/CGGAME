@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -20,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
 
-    private int numSpawned = 5;
+    private int numSpawned = 1;
 
     private void SpawnSet()
     {
@@ -30,7 +29,7 @@ public class EnemyManager : MonoBehaviour
             if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
             {
                 GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hit.point, hit.transform.rotation);
-                locateEnemy += go.GetComponent<GenericEnemy>().SetupProcedure;
+                locateEnemy += go.GetComponent<GenericEnemy>().setEnemy;
                 stopSearch += go.GetComponent<GenericEnemy>().stopSearch;
                 go.GetComponent<GenericEnemy>().onDeath += RemoveEnemy;
             }
@@ -39,7 +38,7 @@ public class EnemyManager : MonoBehaviour
 
     private void RemoveEnemy(GenericEnemy e)
     {
-        locateEnemy -= e.SetupProcedure;
+        locateEnemy -= e.setEnemy;
         stopSearch -= e.stopSearch;
         e.GetComponent<GenericEnemy>().onDeath -= RemoveEnemy;
         Destroy(e.gameObject);
@@ -47,17 +46,11 @@ public class EnemyManager : MonoBehaviour
 
     private void notifyEnemies()
     {
-        Delay();
+        locateEnemy.Invoke();
     }
     private void notifyOfEnd()
     {
         stopSearch?.Invoke();
-    }
-
-    private IEnumerator Delay()
-    {
-        yield return new WaitForEndOfFrame();
-        locateEnemy.Invoke();
     }
 
     private void OnEnable()

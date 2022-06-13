@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +34,6 @@ public class HE : MonoBehaviour
 
     void FixedUpdate()
     {
-        float dist = speed * Time.deltaTime;
-        transform.Translate(transform.forward * dist, Space.World);
+        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
     }
 }

@@ -16,7 +16,6 @@ public class LevelGenerator : MonoBehaviour
 
     private void Build()
     {
-        surface.BuildNavMesh();
-        
+        surface.BuildNavMesh();  
     }
 }

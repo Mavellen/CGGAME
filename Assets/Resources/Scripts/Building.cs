@@ -1,13 +1,11 @@
 using UnityEngine;
 using System;
-using System.Collections;
 
 public class Building : MonoBehaviour
 {
     public event Action<Building> destroyedNotice;
 
-    private event Action enemyInRange;
-    private GameObject target;
+    private GenericEnemy target;
     private Transform myTurret;
     public GameObject BulletPrefab;
 
@@ -19,7 +17,6 @@ public class Building : MonoBehaviour
     private void OnEnable()
     {
         myTurret = transform.Find("Turret");
-        enemyInRange += Attack;
     }
 
     public void Receive(float DMG)
@@ -32,7 +29,7 @@ public class Building : MonoBehaviour
     {
         if(target != null)
         {
-            enemyInRange?.Invoke();
+            Attack();
         }
         else
         {
@@ -43,19 +40,19 @@ public class Building : MonoBehaviour
     private void SetEnemy()
     {
         Collider[] c = Physics.OverlapSphere(transform.position, range);
-        GameObject d = null;
+        GenericEnemy d = null;
         for (int i = 0; i < c.Length; i++)
         {
-            if (c[i].gameObject.TryGetComponent<GenericEnemy>(out GenericEnemy co))
+            if (c[i].gameObject.TryGetComponent(out GenericEnemy co))
             {
-                d = c[i].gameObject;
+                d = co;
                 break;
             }
         }
         if (d != null)
         {
             target = d;
-            enemyInRange?.Invoke();
+            Attack();
         }
     }
 
@@ -78,14 +75,13 @@ public class Building : MonoBehaviour
     }
     private void MakeAttack()
     {
-        GameObject bulletGO = (GameObject)Instantiate(BulletPrefab, this.myTurret.position, this.myTurret.rotation);
+        GameObject bulletGO = Instantiate(BulletPrefab, myTurret.position, myTurret.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         bullet.setRotation(target.transform.position);
     }
 
     public void onDestruction()
     {
-        enemyInRange -= Attack;
         destroyedNotice?.Invoke(this);
     }
 }

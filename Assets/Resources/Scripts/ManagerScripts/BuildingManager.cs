@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -21,12 +20,12 @@ public class BuildingManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
 
-    private int numSpawned = 1;
-    private int left = 0;
+    private int numSpawned = 5;
+    private int buldingsLeft = 0;
 
     private void SpawnSet()
     {
-        left += numSpawned;
+        buldingsLeft += numSpawned;
         for (int i = 0; i < numSpawned; i++)
         {
             Vector3 pos = new Vector3(UnityEngine.Random.Range(-20, 20), 10, UnityEngine.Random.Range(-20, 20));
@@ -35,36 +34,26 @@ public class BuildingManager : MonoBehaviour
                 var hitt = hit.point;
                 hitt.y += 0.5f;
                 GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
-                go.AddComponent<Building>().destroyedNotice += destroyedRam;
+                go.AddComponent<Building>().destroyedNotice += destructionEvent;
             }
-            //GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], pos, Quaternion.identity);
-            //go.AddComponent<Building>().destroyedNotice += destroyedRam;
 
         }
         updateNavMesh?.Invoke();
         buildingDestroyedNotice?.Invoke();
     }
 
-    private void destroyedRam(Building b)
+    private void destructionEvent(Building b)
     {
-        b.GetComponent<Building>().destroyedNotice -= destroyedRam;
+        b.GetComponent<Building>().destroyedNotice -= destructionEvent;
         Destroy(b.gameObject);
-        left--;
-        if(left > 0)
+        buldingsLeft--;
+        if(buldingsLeft > 0)
         {
             buildingDestroyedNotice?.Invoke();
         }
         else
         {
             ranOutOfBuildingsNotice?.Invoke();
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SpawnSet();
         }
     }
 
