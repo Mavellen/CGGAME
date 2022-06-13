@@ -23,8 +23,11 @@ public class TreeManager : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(-20, 20), 0, UnityEngine.Random.Range(-20, 20));
-            GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], pos, Quaternion.identity);
+            Vector3 pos = new Vector3(UnityEngine.Random.Range(-20, 20), 10, UnityEngine.Random.Range(-20, 20));
+            if (Physics.Raycast(pos, -Vector3.up, out RaycastHit hit))
+            {
+                GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hit.point, hit.transform.rotation);
+            }
         }
         updateNavMesh?.Invoke();
     }

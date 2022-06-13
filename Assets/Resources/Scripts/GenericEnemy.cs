@@ -15,6 +15,7 @@ public class GenericEnemy : MonoBehaviour
     private float DMG = 1f;
 
     private Building building;
+    private bool seek = true;
 
     private void OnEnable()
     {
@@ -35,7 +36,7 @@ public class GenericEnemy : MonoBehaviour
     }
     private IEnumerator setEnemy()
     {
-        while (building == null)
+        while (seek && building == null)
         {
             Building[] b = GameObject.FindObjectsOfType<Building>();
             if (b.Length > 0)
@@ -57,6 +58,10 @@ public class GenericEnemy : MonoBehaviour
     {
         StartCoroutine(setEnemy());
     }
+    public void stopSearch()
+    {
+        seek = false;
+    }
 
     private IEnumerator MakeAttack()
     {
@@ -71,7 +76,6 @@ public class GenericEnemy : MonoBehaviour
 
     private IEnumerator Move()
     {
-        
         Collider[] c = Physics.OverlapSphere(transform.position, 1);
         GameObject d = null;
         for (int i = 0; i < c.Length; i++)
@@ -86,6 +90,9 @@ public class GenericEnemy : MonoBehaviour
 
         if (d == null)
         {
+            Vector3 dir = building.transform.position - transform.position;
+            Quaternion lR = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
             Agent.destination = building.transform.position;
         }
         else
@@ -107,7 +114,7 @@ public class GenericEnemy : MonoBehaviour
     private void onKilled()
     {
         buildingInRange -= Attack;
-        onDeath.Invoke(this);
+        onDeath?.Invoke(this);
     }
 }
 

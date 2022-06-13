@@ -7,19 +7,23 @@ public class Building : MonoBehaviour
     public event Action<Building> destroyedNotice;
 
     private event Action enemyInRange;
-    private GenericEnemy target;
+    private GameObject target;
+    private Transform myTurret;
+    public GameObject BulletPrefab;
 
-    private float DMG = 1f;
     private float health = 10f;
+    private float range = 10f;
+    private float CD = 1.5f;
+    private float CDL = 0f;
 
     private void OnEnable()
     {
+        myTurret = transform.Find("Turret");
         enemyInRange += Attack;
     }
 
     public void Receive(float DMG)
     {
-        Debug.Log("Structure under attack!");
         health -= DMG;
         if (health <= 0) onDestruction();
     }
@@ -28,17 +32,17 @@ public class Building : MonoBehaviour
     {
         if(target != null)
         {
-            StartCoroutine(MakeAttack());
+            enemyInRange?.Invoke();
         }
         else
         {
-            StartCoroutine(SetEnemy());
+            SetEnemy();
         }
     }
 
-    private IEnumerator SetEnemy()
+    private void SetEnemy()
     {
-        Collider[] c = Physics.OverlapSphere(transform.position, 3);
+        Collider[] c = Physics.OverlapSphere(transform.position, range);
         GameObject d = null;
         for (int i = 0; i < c.Length; i++)
         {
@@ -50,25 +54,33 @@ public class Building : MonoBehaviour
         }
         if (d != null)
         {
-            target = d.gameObject.GetComponent<GenericEnemy>();
+            target = d;
             enemyInRange?.Invoke();
         }
-        yield return null;
+    }
+
+    private void rotateTurret()
+    {
+        Vector3 dir = target.transform.position - transform.position;
+        Quaternion lR = Quaternion.LookRotation(dir);
+        myTurret.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
     }
 
     public void Attack()
     {
-        StartCoroutine(MakeAttack());
-    }
-    private IEnumerator MakeAttack()
-    {
-        yield return new WaitForEndOfFrame();
-        try
+        rotateTurret();
+        CDL -= Time.deltaTime;
+        if(CDL <= 0)
         {
-            target.Receive(DMG);
+            CDL = CD;
+            MakeAttack();
         }
-        catch (NullReferenceException e) { }
-        yield return new WaitForEndOfFrame();
+    }
+    private void MakeAttack()
+    {
+        GameObject bulletGO = (GameObject)Instantiate(BulletPrefab, this.myTurret.position, this.myTurret.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        bullet.setRotation(target.transform.position);
     }
 
     public void onDestruction()
