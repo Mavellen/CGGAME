@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class HE : MonoBehaviour
 {
-    private float speed = 15f;
+    private float speed = 12f;
     private float DMG = 5f;
     private float Radius = 5f;
+
+    public Rigidbody rb;
     public void setRotation(Vector3 Destination)
     {
         transform.LookAt(Destination);
+        rb.freezeRotation = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,6 +37,6 @@ public class HE : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
+        rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
     }
 }

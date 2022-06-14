@@ -12,8 +12,10 @@ public class GenericEnemy : MonoBehaviour
     private float Health = 5f;
     private float DMG = 1f;
     private float Range = 1f;
+    private float CD = 1.5f;
+    private float CDL = 0f;
 
-    private Building building;
+    private BuildingBase building;
     private bool seek = true;
 
     private void OnEnable()
@@ -36,7 +38,7 @@ public class GenericEnemy : MonoBehaviour
     {
         while (seek && building == null)
         {
-            Building[] b = GameObject.FindObjectsOfType<Building>();
+            BuildingBase[] b = GameObject.FindObjectsOfType<BuildingBase>();
             if (b.Length > 0)
             {
                 Transform t = b[0].gameObject.transform;
@@ -47,7 +49,7 @@ public class GenericEnemy : MonoBehaviour
                         t = b[i].gameObject.transform;
                     }
                 }
-                building = t.gameObject.GetComponent<Building>();
+                building = t.gameObject.GetComponent<BuildingBase>();
             }
         }
     }
@@ -57,16 +59,21 @@ public class GenericEnemy : MonoBehaviour
     }
     private void Attack()
     {
-        building.Receive(DMG);
+        CDL -= Time.deltaTime;
+        if (CDL <= 0)
+        {
+            CDL = CD;
+            building.Receive(DMG);
+        }
     }
 
     private void Move()
     {
         Collider[] c = Physics.OverlapSphere(transform.position, Range);
-        Building d = null;
+        BuildingBase d = null;
         for (int i = 0; i < c.Length; i++)
         {
-            if (c[i].gameObject.TryGetComponent<Building>(out Building co))
+            if (c[i].gameObject.TryGetComponent<BuildingBase>(out BuildingBase co))
             {
                 d = co;
                 break;

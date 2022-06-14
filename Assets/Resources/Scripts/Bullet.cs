@@ -3,10 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private float speed = 20f;
-    private float DMG = 1f;
+    private float DMG = 2f;
+    public Rigidbody rb;
     public void setRotation(Vector3 Destination)
     {
         transform.LookAt(Destination);
+        rb.freezeRotation = true;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -23,6 +25,6 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
+        rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
     }
 }

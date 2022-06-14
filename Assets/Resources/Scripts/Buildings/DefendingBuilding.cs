@@ -1,33 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Building : MonoBehaviour
+public class DefendingBuilding : BuildingBase
 {
-    public event Action<Building> destroyedNotice;
-
     private GenericEnemy target;
-    private Transform myTurret;
-    public GameObject BulletPrefab;
+    public Turret myTurret;
 
-    private float health = 10f;
     private float range = 10f;
     private float CD = 1.5f;
     private float CDL = 0f;
 
     private void OnEnable()
     {
-        myTurret = transform.Find("Turret");
-    }
-
-    public void Receive(float DMG)
-    {
-        health -= DMG;
-        if (health <= 0) onDestruction();
+        baseHealth *= 1.5f;
     }
 
     private void FixedUpdate()
     {
-        if(target != null)
+        if (target != null)
         {
             Attack();
         }
@@ -58,16 +49,17 @@ public class Building : MonoBehaviour
 
     private void rotateTurret()
     {
-        Vector3 dir = target.transform.position - transform.position;
-        Quaternion lR = Quaternion.LookRotation(dir);
-        myTurret.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
+        myTurret.Rotate(target);
+        //Vector3 dir = target.transform.position - transform.position;
+        //Quaternion lR = Quaternion.LookRotation(dir);
+        //myTurret.transform.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
     }
 
-    public void Attack()
+    private void Attack()
     {
         rotateTurret();
         CDL -= Time.deltaTime;
-        if(CDL <= 0)
+        if (CDL <= 0)
         {
             CDL = CD;
             MakeAttack();
@@ -75,13 +67,9 @@ public class Building : MonoBehaviour
     }
     private void MakeAttack()
     {
-        GameObject bulletGO = Instantiate(BulletPrefab, myTurret.position, myTurret.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
-        bullet.setRotation(target.transform.position);
-    }
-
-    public void onDestruction()
-    {
-        destroyedNotice?.Invoke(this);
+        myTurret.Shoot(target);
+        //GameObject bulletGO = Instantiate(BulletPrefab, myTurret.position, myTurret.rotation);
+        //Bullet bullet = bulletGO.GetComponent<Bullet>();
+        //bullet.setRotation(target.transform.position);
     }
 }
