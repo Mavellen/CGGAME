@@ -17,7 +17,7 @@ public class GenericEnemy : MonoBehaviour
     private float CD = 1.5f;
     private float CDL = 0f;
 
-    private BuildingBase building;
+    private Structure building;
     private bool seek = true;
     private float suspend = 5f;
 
@@ -44,9 +44,10 @@ public class GenericEnemy : MonoBehaviour
         {
             if(building == null)
             {
-                BuildingBase[] b = GameObject.FindObjectsOfType<BuildingBase>();
-                List<BuildingBase> bL = new List<BuildingBase>();
-                foreach (BuildingBase building in b)
+                Structure[] b = GameObject.FindObjectsOfType<Structure>();
+                List<Structure> bL = new List<Structure>();
+                
+                foreach (Structure building in b)
                 {
                     if (building.isActivated()) bL.Add(building);
                 }
@@ -64,7 +65,7 @@ public class GenericEnemy : MonoBehaviour
                             }
                         }
                     }
-                    building = t.gameObject.GetComponent<BuildingBase>();
+                    building = t.gameObject.GetComponent<Structure>();
                 }
                 else
                 {
@@ -73,6 +74,7 @@ public class GenericEnemy : MonoBehaviour
             }
         }
     }
+    
     private IEnumerator wait(float waitTime)
     {
         float counter = 0;
@@ -82,6 +84,7 @@ public class GenericEnemy : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+    
     public void stopSearch()
     {
         seek = false;
@@ -99,10 +102,10 @@ public class GenericEnemy : MonoBehaviour
     private void Move()
     {
         Collider[] c = Physics.OverlapSphere(transform.position, Range);
-        BuildingBase d = null;
+        Structure d = null;
         for (int i = 0; i < c.Length; i++)
         {
-            if (c[i].gameObject.TryGetComponent<BuildingBase>(out BuildingBase co))
+            if (c[i].gameObject.TryGetComponent<Structure>(out Structure co))
             {
                 d = co;
                 break;
