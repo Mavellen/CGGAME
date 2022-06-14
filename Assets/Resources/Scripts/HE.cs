@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HE : MonoBehaviour
 {
-    private float speed = 12f;
+    private float speed = 18f;
     private float DMG = 5f;
     private float Radius = 5f;
 
@@ -22,7 +22,7 @@ public class HE : MonoBehaviour
             List<GenericEnemy> hitTargets = new List<GenericEnemy>();
             for (int i = 0; i < c.Length; i++)
             {
-                if (c[i].gameObject.TryGetComponent<GenericEnemy>(out GenericEnemy co))
+                if (c[i].gameObject.TryGetComponent(out GenericEnemy co))
                 {
                     hitTargets.Add(co);
                 }

@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
 
-    private int numSpawned = 1;
+    private int numSpawned = 10;
 
     private void SpawnSet()
     {

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1995767426371301198}
   - component: {fileID: 6698715968328377092}
   - component: {fileID: 1501928810798561441}
+  - component: {fileID: -4903230926045858161}
   m_Layer: 7
-  m_Name: BuildingBase
+  m_Name: BuildingGenerator
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,3 +115,15 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &-4903230926045858161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211692105459735635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26aa05752f934c246aaef7e50c756d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

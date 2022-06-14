@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections.Generic;
+using System.Collections;
 
 public class GenericEnemy : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class GenericEnemy : MonoBehaviour
 
     private BuildingBase building;
     private bool seek = true;
+    private float suspend = 5f;
 
     private void OnEnable()
     {
@@ -34,23 +37,49 @@ public class GenericEnemy : MonoBehaviour
             setEnemy();
         }
     }
+
     public void setEnemy()
     {
-        while (seek && building == null)
+        if (seek)
         {
-            BuildingBase[] b = GameObject.FindObjectsOfType<BuildingBase>();
-            if (b.Length > 0)
+            if(building == null)
             {
-                Transform t = b[0].gameObject.transform;
-                for (int i = 1; i < b.Length - 1; i++)
+                BuildingBase[] b = GameObject.FindObjectsOfType<BuildingBase>();
+                List<BuildingBase> bL = new List<BuildingBase>();
+                foreach (BuildingBase building in b)
                 {
-                    if ((transform.position - b[i].gameObject.transform.position).sqrMagnitude < (transform.position - t.position).sqrMagnitude)
-                    {
-                        t = b[i].gameObject.transform;
-                    }
+                    if (building.isActivated()) bL.Add(building);
                 }
-                building = t.gameObject.GetComponent<BuildingBase>();
+
+                if (bL.Count > 0)
+                {
+                    Transform t = bL[0].transform;
+                    for (int i = 1; i < bL.Count; i++)
+                    {
+                        if (bL[i].isActivated())
+                        {
+                            if ((transform.position - bL[i].gameObject.transform.position).sqrMagnitude < (transform.position - t.position).sqrMagnitude)
+                            {
+                                t = bL[i].gameObject.transform;
+                            }
+                        }
+                    }
+                    building = t.gameObject.GetComponent<BuildingBase>();
+                }
+                else
+                {
+                    StartCoroutine(wait(suspend));
+                }
             }
+        }
+    }
+    private IEnumerator wait(float waitTime)
+    {
+        float counter = 0;
+        while(counter < waitTime)
+        {
+            counter += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
     }
     public void stopSearch()
