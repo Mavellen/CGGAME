@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 20f;
+    private float speed = 30f;
     private float DMG = 2f;
     public Rigidbody rb;
     public void setRotation(Vector3 Destination)

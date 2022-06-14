@@ -20,7 +20,7 @@ public class BuildingManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
 
-    private int numSpawned = 1;
+    private int numSpawned = 5;
     private int buldingsLeft = 0;
 
     private void SpawnSet()
@@ -33,8 +33,9 @@ public class BuildingManager : MonoBehaviour
             {
                 var hitt = hit.point;
                 hitt.y += 0.5f;
-                GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
+                GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
                 go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
+                MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
             }
 
         }
@@ -45,6 +46,7 @@ public class BuildingManager : MonoBehaviour
     private void destructionEvent(BuildingBase b)
     {
         b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
+        MainBuilding.notificationExit -= b.notInRange;
         Destroy(b.gameObject);
         buldingsLeft--;
         if(buldingsLeft > 0)

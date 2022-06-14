@@ -8,7 +8,7 @@ public class DefendingBuilding : BuildingBase
     public Turret myTurret;
 
     private float range = 10f;
-    private float CD = 1.5f;
+    private float CD = 1f;
     private float CDL = 0f;
 
     private void OnEnable()
@@ -18,13 +18,17 @@ public class DefendingBuilding : BuildingBase
 
     private void FixedUpdate()
     {
-        if (target != null)
+        Debug.Log(Activated);
+        if (Activated)
         {
-            Attack();
-        }
-        else
-        {
-            SetEnemy();
+            if (target != null)
+            {
+                Attack();
+            }
+            else
+            {
+                SetEnemy();
+            }
         }
     }
 
