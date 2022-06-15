@@ -23,7 +23,7 @@ public class MainBuilding : Structure
     private float CDPlode = 1f;
     private float CDR = 0f;
 
-    private float range = 10f;
+    private float range = 15f;
     private float CDAttacks = 0.5f;
     private float CDL = 0f;
 

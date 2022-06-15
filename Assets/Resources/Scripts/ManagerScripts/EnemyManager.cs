@@ -18,20 +18,32 @@ public class EnemyManager : MonoBehaviour
     private event Action stopSearch;
 
     [SerializeField] private List<GameObject> Prefab;
+    [SerializeField] List<EnemySpawner> Spawners;
 
-    private int numSpawned = 10;
+    private int numSpawned = 2;
+    private float CD = 5f;
+    private float CDL = 0f;
+
+    private void FixedUpdate()
+    {
+        CDL -= Time.deltaTime;
+        if (CDL <= 0)
+        {
+            CDL = CD;
+            SpawnSet();
+        }
+    }
 
     private void SpawnSet()
     {
-        for (int i = 0; i < numSpawned; i++)
+        for (int i = 0; i < Spawners.Count; i++)
         {
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(-20, 20), 10, UnityEngine.Random.Range(-20, 20));
-            if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
+            GameObject[] gOs = Spawners[i].Spawn(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], numSpawned);
+            for (int j = 0; j < gOs.Length; j++)
             {
-                GameObject go = GameObject.Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hit.point, hit.transform.rotation);
-                locateEnemy += go.GetComponent<GenericEnemy>().setEnemy;
-                stopSearch += go.GetComponent<GenericEnemy>().stopSearch;
-                go.GetComponent<GenericEnemy>().onDeath += RemoveEnemy;
+                locateEnemy += gOs[j].GetComponent<GenericEnemy>().setEnemy;
+                stopSearch += gOs[j].GetComponent<GenericEnemy>().stopSearch;
+                gOs[j].GetComponent<GenericEnemy>().onDeath += RemoveEnemy;
             }
         }
     }

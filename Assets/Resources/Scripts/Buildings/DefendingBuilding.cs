@@ -8,7 +8,7 @@ public class DefendingBuilding : BuildingBase
     public Turret myTurret;
 
     private float range = 10f;
-    private float CD = 1f;
+    private float CD = 0.5f;
     private float CDL = 0f;
 
     private void OnEnable()

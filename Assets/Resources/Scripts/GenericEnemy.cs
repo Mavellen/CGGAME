@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 using System;
@@ -14,7 +13,7 @@ public class GenericEnemy : MonoBehaviour
     private float Health = 5f;
     private float DMG = 1f;
     private float Range = 1f;
-    private float CD = 1.5f;
+    private float CD = 2f;
     private float CDL = 0f;
 
     private Structure building;
