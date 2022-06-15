@@ -676,6 +676,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3252586494740498036, guid: 42b6c463ee7984c4eb29e23ac37b9c43, type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1433329531}
     - target: {fileID: 3252586494740498037, guid: 42b6c463ee7984c4eb29e23ac37b9c43, type: 3}
       propertyPath: m_Name
       value: MainBuilding

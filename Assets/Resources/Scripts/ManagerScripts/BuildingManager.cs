@@ -58,36 +58,6 @@ public class BuildingManager : MonoBehaviour
         }
         updateNavMesh?.Invoke();
         buildingDestroyedNotice?.Invoke();
-
-        /*
-        for (int rings = 10; rings < 70; rings+=10)
-        {
-            for (int degrees = 0; degrees < 360; degrees += (360/numSpawnedInnerRing))
-            {
-                Vector3 pos = new Vector3(Mathf.Cos(UnityEngine.Random.Range(degrees-10,degrees+10)), 0, Mathf.Sin(UnityEngine.Random.Range(degrees - 10, degrees + 10)));
-                pos *= UnityEngine.Random.Range(rings - 3, rings + 3);
-                pos.y = 10;
-                if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
-                {
-                    if (hit.collider.CompareTag("Building"))
-                    {
-                        degrees-=10;
-                        continue;
-                    }
-                    var hitt = hit.point;
-                    hitt.y += 0.5f;
-                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
-                    go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
-                    MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
-                    go.GetComponent<BuildingBase>().Activated = false;
-                    go.GetComponent<BuildingBase>().ParticleSystem.Pause();
-                    buldingsLeft++;
-                }
-            }
-        }
-        updateNavMesh?.Invoke();
-        buildingDestroyedNotice?.Invoke();
-        */
     }
 
     private void destructionEvent(BuildingBase b)

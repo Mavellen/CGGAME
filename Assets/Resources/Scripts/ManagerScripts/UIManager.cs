@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -29,7 +28,8 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void Reload(){
-		Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		//Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void pauseControl(){
@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void LoadLevel(string level){
-		Application.LoadLevel(level);
+		SceneManager.LoadScene(level);
+		//Application.LoadLevel(level);
 	}
 }

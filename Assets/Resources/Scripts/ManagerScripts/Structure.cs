@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public abstract class Structure : MonoBehaviour
 {
     public RectTransform healthbar;
@@ -9,7 +10,7 @@ public abstract class Structure : MonoBehaviour
     [System.NonSerialized] public bool Activated = false;
     protected float multiplier = 1f;
 
-    public void Receive(float DMG)
+    public virtual void Receive(float DMG)
     {
         currentHealth -= DMG;
         if (currentHealth <= 0) onDestruction();
@@ -28,4 +29,5 @@ public abstract class Structure : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
 }
