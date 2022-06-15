@@ -20,46 +20,74 @@ public class BuildingManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
 
-    private int numSpawned = 30;
+    private float numSpawnedInnerRing = 3;
     private int buldingsLeft = 0;
-
-    private void Spawn()
-    {
-        for(int rings = 10; rings < 60; rings+=10)
-        {
-            for (int degrees = 0; degrees < 340; degrees += 20)
-            {
-                Vector3 pos = new Vector3(Mathf.Cos(degrees), 10, Mathf.Sin(degrees));
-
-            }
-        }
-    }
 
     private void SpawnSet()
     {
-        buldingsLeft += numSpawned;
-        for (int i = 0; i < numSpawned; i++)
+        float firstRing = numSpawnedInnerRing;
+        float degrees = 0;
+        float add = 360 / firstRing;
+        for(int rings = 10; rings < 70; rings += 10)
         {
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(-65, 65), 10, UnityEngine.Random.Range(-65, 65));
-            if(Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
+            for(float i = firstRing; i >= 1; i--)
             {
-                if (hit.collider.CompareTag("Building"))
+                degrees += add;
+                var x = Mathf.Cos(UnityEngine.Random.Range(degrees - 7, degrees + 7)) * UnityEngine.Random.Range(rings - 3, rings + 3);
+                var z = Mathf.Sin(UnityEngine.Random.Range(degrees - 7, degrees + 7)) * UnityEngine.Random.Range(rings - 3, rings + 3);
+                Vector3 pos = new Vector3(x, 10, z);
+                if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
                 {
-                    i--;
-                    continue;
+                    if (hit.collider.CompareTag("Building"))
+                    {
+                        continue;
+                    }
+                    var hitt = hit.point;
+                    hitt.y += 0.5f;
+                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
+                    go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
+                    MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
+                    go.GetComponent<BuildingBase>().Activated = false;
+                    go.GetComponent<BuildingBase>().ParticleSystem.Pause();
+                    buldingsLeft++;
                 }
-                var hitt = hit.point;
-                hitt.y += 0.5f;
-                GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
-                go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
-                MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
-                go.GetComponent<BuildingBase>().Activated = false;
-                go.GetComponent<BuildingBase>().ParticleSystem.Pause();
             }
-
+            firstRing += 3;
+            add = 360 / firstRing;
+            degrees = 0;
         }
         updateNavMesh?.Invoke();
         buildingDestroyedNotice?.Invoke();
+
+        /*
+        for (int rings = 10; rings < 70; rings+=10)
+        {
+            for (int degrees = 0; degrees < 360; degrees += (360/numSpawnedInnerRing))
+            {
+                Vector3 pos = new Vector3(Mathf.Cos(UnityEngine.Random.Range(degrees-10,degrees+10)), 0, Mathf.Sin(UnityEngine.Random.Range(degrees - 10, degrees + 10)));
+                pos *= UnityEngine.Random.Range(rings - 3, rings + 3);
+                pos.y = 10;
+                if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
+                {
+                    if (hit.collider.CompareTag("Building"))
+                    {
+                        degrees-=10;
+                        continue;
+                    }
+                    var hitt = hit.point;
+                    hitt.y += 0.5f;
+                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
+                    go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
+                    MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
+                    go.GetComponent<BuildingBase>().Activated = false;
+                    go.GetComponent<BuildingBase>().ParticleSystem.Pause();
+                    buldingsLeft++;
+                }
+            }
+        }
+        updateNavMesh?.Invoke();
+        buildingDestroyedNotice?.Invoke();
+        */
     }
 
     private void destructionEvent(BuildingBase b)

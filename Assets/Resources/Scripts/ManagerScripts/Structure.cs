@@ -6,7 +6,7 @@ public abstract class Structure : MonoBehaviour
 
     protected float baseHealth = 10f;
     protected float currentHealth = 10f;
-    public bool Activated = false;
+    [System.NonSerialized] public bool Activated = false;
     protected float multiplier = 1f;
 
     public void Receive(float DMG)

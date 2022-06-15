@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5068658007537587824, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2639204510609911022, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
     - {fileID: -4903230926045858161, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
@@ -212,6 +216,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 404158675716510909}
-  Activated: 0
   ParticleSystem: {fileID: 25044013266513648}
   myTurret: {fileID: 5652479318802105684}

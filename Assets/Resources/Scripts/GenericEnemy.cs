@@ -18,7 +18,6 @@ public class GenericEnemy : MonoBehaviour
 
     private Structure building;
     private bool seek = true;
-    private float suspend = 5f;
 
     private void OnEnable()
     {
@@ -41,7 +40,7 @@ public class GenericEnemy : MonoBehaviour
     {
         if (seek)
         {
-            if(building == null)
+            if (building == null)
             {
                 Structure[] b = GameObject.FindObjectsOfType<Structure>();
                 List<Structure> bL = new List<Structure>();
@@ -66,23 +65,10 @@ public class GenericEnemy : MonoBehaviour
                     }
                     building = t.gameObject.GetComponent<Structure>();
                 }
-                else
-                {
-                    StartCoroutine(wait(suspend));
-                }
             }
         }
     }
     
-    private IEnumerator wait(float waitTime)
-    {
-        float counter = 0;
-        while(counter < waitTime)
-        {
-            counter += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-    }
     
     public void stopSearch()
     {
