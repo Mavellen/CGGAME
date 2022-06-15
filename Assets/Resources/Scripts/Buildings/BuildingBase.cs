@@ -7,8 +7,8 @@ public abstract class BuildingBase : Structure
 
     public ParticleSystem ParticleSystem;
 
-    protected float energyConsumption = 5f;
-    protected float energyGeneration = 5f;
+    protected float energyConsumption = 7f;
+    protected float energyGeneration = 4f;
 
     private bool wasNotified;
 
@@ -21,10 +21,6 @@ public abstract class BuildingBase : Structure
         return energyGeneration;
     }
 
-    private void OnAwake()
-    {
-        Activated = false;
-    }
     protected override void onDestruction()
     {
         destroyedNotice?.Invoke(this);

@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4827504062516520794, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5027680921885184503, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: m_RootOrder
@@ -133,11 +133,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 4754211781072011639}
-  ParticleSystem: {fileID: 7146761884407080047, guid: db27280856f36544194586a380d5e0cb, type: 3}
+  Activated: 0
+  ParticleSystem: {fileID: 4916100261614713658}
   myTurret: {fileID: 3354751652163370819}
 --- !u!224 &4754211781072011639 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8531982880693155881, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+  m_PrefabInstance: {fileID: 4007617992873195870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4916100261614713658 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8332948423075709540, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
   m_PrefabInstance: {fileID: 4007617992873195870}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8239338258133297321 stripped

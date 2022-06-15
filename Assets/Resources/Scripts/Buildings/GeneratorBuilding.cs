@@ -8,15 +8,17 @@ public class GeneratorBuilding : BuildingBase
     {
         baseHealth *= 1f;
         multiplier = (2f * baseHealth);
-        energyGeneration += 5f;
+        energyGeneration *= 2.5f;
     }
     private void FixedUpdate()
     {
-        Powered();
-    }
-    private void Powered()
-    {
-        if (Activated) ParticleSystem.Play();
-        else ParticleSystem.Pause();
+        ParticleSystem.Pause();
+        var main = ParticleSystem.main;
+        main.startColor = Color.red;
+        if (!Activated)
+        {
+            main.startColor = Color.black;
+        }
+        ParticleSystem.Play();
     }
 }

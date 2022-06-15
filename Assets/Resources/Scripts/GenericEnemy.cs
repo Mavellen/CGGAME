@@ -95,6 +95,7 @@ public class GenericEnemy : MonoBehaviour
         {
             CDL = CD;
             building.Receive(DMG);
+            
         }
     }
 
@@ -127,7 +128,6 @@ public class GenericEnemy : MonoBehaviour
 
     public void Receive(float DMG)
     {
-        Debug.Log("Taking Damage!");
         Health -= DMG;
         if (Health <= 0) onKilled();
     }

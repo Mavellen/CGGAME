@@ -20,8 +20,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<GameObject> Prefab;
     [SerializeField] List<EnemySpawner> Spawners;
 
-    private int numSpawned = 2;
-    private float CD = 5f;
+    private int numSpawned = 1;
+    private float CD = 4f;
     private float CDL = 0f;
 
     private void FixedUpdate()

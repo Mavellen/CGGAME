@@ -29,13 +29,14 @@ public class MainBuilding : Structure
 
     private float baseGeneration = 10f;
     public Generation electricityGeneration;
-    private float Consumption = 0f;
+    public Consumption electricityConsumption;
     private void onAwake()
     {
         electricityGeneration = FindObjectOfType<Generation>();
     }
     private void OnEnable()
     {
+        Activated = true;
         baseHealth *= 5f;
         multiplier = (0.4f * baseHealth);
     }
@@ -108,7 +109,7 @@ public class MainBuilding : Structure
     {
         Collider[] c = Physics.OverlapSphere(transform.position, electricityGeneration.generatedElectricity);
         electricityGeneration.generatedElectricity = baseGeneration;
-        Consumption = 0f;
+        electricityConsumption.consumedElectricity = 0f;
         List<BuildingBase> buildings = new List<BuildingBase>();
         for (int i = 0; i < c.Length; i++)
         {
@@ -116,15 +117,15 @@ public class MainBuilding : Structure
             if (c[i].gameObject.TryGetComponent(out BuildingBase co))
             {
                 electricityGeneration.generatedElectricity += co.getGeneration();
-                Consumption += co.getConsumption();
+                electricityConsumption.consumedElectricity += co.getConsumption();
                 buildings.Add(co);
             }
         }
-        while(Consumption > electricityGeneration.generatedElectricity)
+        while(electricityConsumption.consumedElectricity > electricityGeneration.generatedElectricity)
         {
             BuildingBase b = buildings[UnityEngine.Random.Range(0, buildings.Count)];
             electricityGeneration.generatedElectricity -= b.getGeneration();
-            Consumption -= b.getConsumption();
+            electricityConsumption.consumedElectricity -= b.getConsumption();
             buildings.Remove(b);
         }
         foreach (BuildingBase b in buildings) { b.receivedNotice(); }
