@@ -207,4 +207,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 404158675716510909}
+  ParticleSystem: {fileID: 7146761884407080047, guid: db27280856f36544194586a380d5e0cb, type: 3}
   myTurret: {fileID: 5652479318802105684}

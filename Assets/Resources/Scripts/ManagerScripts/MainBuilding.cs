@@ -24,12 +24,16 @@ public class MainBuilding : Structure
     private float CDR = 0f;
 
     private float range = 10f;
-    private float CDAttacks = 1f;
+    private float CDAttacks = 0.5f;
     private float CDL = 0f;
 
     private float baseGeneration = 10f;
-    private float Generation = 0f;
+    public Generation electricityGeneration;
     private float Consumption = 0f;
+    private void onAwake()
+    {
+        electricityGeneration = FindObjectOfType<Generation>();
+    }
     private void OnEnable()
     {
         baseHealth *= 5f;
@@ -102,19 +106,29 @@ public class MainBuilding : Structure
 
     private void plode()
     {
-        Collider[] c = Physics.OverlapSphere(transform.position, Generation);
-        Generation = baseGeneration;
+        Collider[] c = Physics.OverlapSphere(transform.position, electricityGeneration.generatedElectricity);
+        electricityGeneration.generatedElectricity = baseGeneration;
         Consumption = 0f;
+        List<BuildingBase> buildings = new List<BuildingBase>();
         for (int i = 0; i < c.Length; i++)
         {
+
             if (c[i].gameObject.TryGetComponent(out BuildingBase co))
             {
-                Debug.DrawRay(transform.position, c[i].gameObject.transform.position);
-                Generation += co.getGeneration();
+                electricityGeneration.generatedElectricity += co.getGeneration();
                 Consumption += co.getConsumption();
-                co.receivedNotice();
+                buildings.Add(co);
             }
         }
+        while(Consumption > electricityGeneration.generatedElectricity)
+        {
+            BuildingBase b = buildings[UnityEngine.Random.Range(0, buildings.Count)];
+            electricityGeneration.generatedElectricity -= b.getGeneration();
+            Consumption -= b.getConsumption();
+            buildings.Remove(b);
+        }
+        foreach (BuildingBase b in buildings) { b.receivedNotice(); }
+
         notificationExit?.Invoke();
     }
     

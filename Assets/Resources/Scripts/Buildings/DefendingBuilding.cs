@@ -30,6 +30,13 @@ public class DefendingBuilding : BuildingBase
                 SetEnemy();
             }
         }
+        Powered();
+    }
+
+    private void Powered()
+    {
+        if (Activated) ParticleSystem.Play();
+        else ParticleSystem.Pause();
     }
 
     private void SetEnemy()

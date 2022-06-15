@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3252586494740498042}
   - component: {fileID: 3252586494740498043}
   - component: {fileID: 3252586494740498036}
+  - component: {fileID: 1278633783936435094}
   m_Layer: 0
   m_Name: MainBuilding
   m_TagString: Untagged
@@ -117,6 +118,20 @@ MonoBehaviour:
   Turrets:
   - {fileID: 3760525074827998854}
   - {fileID: 3760525074843376318}
+  electricityGeneration: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
+--- !u!114 &1278633783936435094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252586494740498037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5159cedebbda924aa0cc8406fac16c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  electricityGeneration: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
 --- !u!1001 &3252586494941822763
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 4754211781072011639}
+  ParticleSystem: {fileID: 7146761884407080047, guid: db27280856f36544194586a380d5e0cb, type: 3}
   myTurret: {fileID: 3354751652163370819}
 --- !u!224 &4754211781072011639 stripped
 RectTransform:

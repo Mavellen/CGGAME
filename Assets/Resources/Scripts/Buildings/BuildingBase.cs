@@ -5,6 +5,8 @@ public abstract class BuildingBase : Structure
 {
     public event Action<BuildingBase> destroyedNotice;
 
+    public ParticleSystem ParticleSystem;
+
     protected float energyConsumption = 5f;
     protected float energyGeneration = 5f;
 
@@ -19,11 +21,6 @@ public abstract class BuildingBase : Structure
         return energyGeneration;
     }
 
-    private void OnEnable()
-    {
-        baseHealth *= 1f;
-        multiplier = (2f * baseHealth);
-    }
     private void OnAwake()
     {
         Activated = false;
