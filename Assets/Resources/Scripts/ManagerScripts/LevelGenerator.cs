@@ -4,7 +4,7 @@ using System;
 
 public class LevelGenerator : MonoBehaviour
 {
-    private NavMeshSurface surface;
+    private static NavMeshSurface surface;
 
     private void Awake()
     {
@@ -17,5 +17,10 @@ public class LevelGenerator : MonoBehaviour
     private void Build()
     {
         surface.BuildNavMesh();  
+    }
+
+    public static void removeMesh()
+    {
+        Destroy(surface);
     }
 }

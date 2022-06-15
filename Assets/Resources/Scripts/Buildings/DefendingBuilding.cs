@@ -14,11 +14,11 @@ public class DefendingBuilding : BuildingBase
     private void OnEnable()
     {
         baseHealth *= 1.5f;
+        multiplier = (1.3f * baseHealth);
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(Activated);
         if (Activated)
         {
             if (target != null)
@@ -54,9 +54,6 @@ public class DefendingBuilding : BuildingBase
     private void rotateTurret()
     {
         myTurret.Rotate(target);
-        //Vector3 dir = target.transform.position - transform.position;
-        //Quaternion lR = Quaternion.LookRotation(dir);
-        //myTurret.transform.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
     }
 
     private void Attack()
@@ -72,8 +69,5 @@ public class DefendingBuilding : BuildingBase
     private void MakeAttack()
     {
         myTurret.Shoot(target);
-        //GameObject bulletGO = Instantiate(BulletPrefab, myTurret.position, myTurret.rotation);
-        //Bullet bullet = bulletGO.GetComponent<Bullet>();
-        //bullet.setRotation(target.transform.position);
     }
 }

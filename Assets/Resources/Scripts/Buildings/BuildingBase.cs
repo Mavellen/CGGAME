@@ -1,14 +1,13 @@
 using UnityEngine;
 using System;
 
-public abstract class BuildingBase : MonoBehaviour
+public abstract class BuildingBase : Structure
 {
     public event Action<BuildingBase> destroyedNotice;
 
-    protected float baseHealth = 10f;
     protected float energyConsumption = 5f;
     protected float energyGeneration = 5f;
-    protected bool Activated;
+
     private bool wasNotified;
 
     public float getConsumption()
@@ -19,16 +18,17 @@ public abstract class BuildingBase : MonoBehaviour
     {
         return energyGeneration;
     }
-    public bool isActivated()
+
+    private void OnEnable()
     {
-        return Activated;
+        baseHealth *= 1f;
+        multiplier = (2f * baseHealth);
     }
-    public void Receive(float DMG)
+    private void OnAwake()
     {
-        baseHealth -= DMG;
-        if (baseHealth <= 0) onDestruction();
+        Activated = false;
     }
-    private void onDestruction()
+    protected override void onDestruction()
     {
         destroyedNotice?.Invoke(this);
     }

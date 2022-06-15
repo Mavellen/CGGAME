@@ -79,10 +79,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrenadeTurretBuilding
       objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2639204510609911022, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: myTurret
       value: 
       objectReference: {fileID: 2956662252466507776, guid: 310af126d04cf674d8cca9db2ade1a3f, type: 3}
+    - target: {fileID: 4827504062516520794, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5027680921885184503, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -131,6 +179,11 @@ PrefabInstance:
     - {fileID: 2639204510609911022, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
     - {fileID: -4903230926045858161, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+--- !u!224 &404158675716510909 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8531982880693155881, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+  m_PrefabInstance: {fileID: 8357674946990992532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3907299547024325987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5027680921885184503, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
@@ -153,4 +206,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4421b5f8d169c3149a6509e007e06bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthbar: {fileID: 404158675716510909}
   myTurret: {fileID: 5652479318802105684}
