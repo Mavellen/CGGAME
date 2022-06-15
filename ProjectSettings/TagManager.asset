@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Ground
   - Camera Target
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX
