@@ -19,9 +19,10 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Prefab;
     [SerializeField] List<EnemySpawner> Spawners;
+    public Consumption consumptoin;
 
     private int numSpawned = 1;
-    private float CD = 4f;
+    private float CD = 5f;
     private float CDL = 0f;
 
     private void FixedUpdate()
@@ -30,6 +31,9 @@ public class EnemyManager : MonoBehaviour
         if (CDL <= 0)
         {
             CDL = CD;
+            numSpawned = 1;
+            numSpawned *= Mathf.FloorToInt(consumptoin.consumedElectricity / 10);
+            Mathf.Clamp(numSpawned, 1, 6);
             SpawnSet();
         }
     }
@@ -67,6 +71,11 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
+        for(int i = 0; i < Spawners.Count; i++)
+        {
+            Spawners[i].transform.position += new Vector3(UnityEngine.Random.Range(-10,10), 0, UnityEngine.Random.Range(-10,10)); 
+        }
+
         BuildingManager.buildingDestroyedNotice += notifyEnemies;
         BuildingManager.ranOutOfBuildingsNotice += notifyOfEnd;
         SpawnSet();

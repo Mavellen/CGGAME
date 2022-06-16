@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5027680921885184503}
   - component: {fileID: 3955201503938236484}
   - component: {fileID: 1995767426371301198}
-  - component: {fileID: 6698715968328377092}
   - component: {fileID: 1501928810798561441}
   - component: {fileID: -4903230926045858161}
+  - component: {fileID: 5135986655589793944}
   m_Layer: 7
   m_Name: BuildingGenerator
   m_TagString: Building
@@ -88,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6698715968328377092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211692105459735635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &1501928810798561441
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -130,7 +117,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 8531982880693155881}
+  Activated: 0
   ParticleSystem: {fileID: 8332948423075709540}
+  generation: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
+  consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
+--- !u!65 &5135986655589793944
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211692105459735635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1192031551822947851
 PrefabInstance:
   m_ObjectHideFlags: 0

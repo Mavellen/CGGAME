@@ -10,15 +10,4 @@ public class GeneratorBuilding : BuildingBase
         multiplier = (2f * baseHealth);
         energyGeneration *= 2.5f;
     }
-    private void FixedUpdate()
-    {
-        ParticleSystem.Pause();
-        var main = ParticleSystem.main;
-        main.startColor = Color.red;
-        if (!Activated)
-        {
-            main.startColor = Color.black;
-        }
-        ParticleSystem.Play();
-    }
 }

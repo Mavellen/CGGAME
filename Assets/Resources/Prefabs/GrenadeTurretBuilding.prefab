@@ -216,5 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 404158675716510909}
+  Activated: 0
   ParticleSystem: {fileID: 25044013266513648}
+  generation: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
+  consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
   myTurret: {fileID: 5652479318802105684}

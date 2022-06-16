@@ -19,6 +19,8 @@ public class GenericEnemy : MonoBehaviour
     private Structure building;
     private bool seek = true;
 
+    public bool hasTarget;
+
     private void OnEnable()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -28,10 +30,12 @@ public class GenericEnemy : MonoBehaviour
     {
         if (building != null)
         {
+            hasTarget = true;
             Move();
         }
         else
         {
+            hasTarget = false;
             setEnemy();
         }
     }
@@ -80,8 +84,11 @@ public class GenericEnemy : MonoBehaviour
         if (CDL <= 0)
         {
             CDL = CD;
-            building.Receive(DMG);
-            
+            if (building.isActivated())
+            {
+                building.Receive(DMG);
+            }
+            else setEnemy();
         }
     }
 
@@ -93,7 +100,10 @@ public class GenericEnemy : MonoBehaviour
         {
             if (c[i].gameObject.TryGetComponent<Structure>(out Structure co))
             {
-                d = co;
+                if (co.isActivated())
+                {
+                    d = co;
+                }
                 break;
             }
         }

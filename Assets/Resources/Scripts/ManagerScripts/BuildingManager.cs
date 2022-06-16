@@ -38,7 +38,7 @@ public class BuildingManager : MonoBehaviour
                 Vector3 pos = new Vector3(x, 10, z);
                 if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
                 {
-                    if (hit.collider.CompareTag("Building"))
+                    if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Player"))
                     {
                         continue;
                     }

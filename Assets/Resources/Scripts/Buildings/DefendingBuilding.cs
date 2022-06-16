@@ -19,9 +19,6 @@ public class DefendingBuilding : BuildingBase
 
     private void FixedUpdate()
     {
-        ParticleSystem.Pause();
-        var main = ParticleSystem.main;
-        main.startColor = Color.red;
         if (Activated)
         {
             if (target != null)
@@ -33,11 +30,6 @@ public class DefendingBuilding : BuildingBase
                 SetEnemy();
             }
         }
-        else
-        {
-            main.startColor = Color.black;
-        }
-        ParticleSystem.Play();
 
     }
 

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8141bbb6b61650447b68ed97e89229c1, type: 3}
   m_Name: Consumption
   m_EditorClassIdentifier: 
-  consumedElectricity: 0
+  consumedElectricity: 35
