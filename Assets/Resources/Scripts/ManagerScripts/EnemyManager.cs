@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -14,75 +13,48 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private event Action locateEnemy;
-    private event Action stopSearch;
-
     [SerializeField] private List<GameObject> Prefab;
-    [SerializeField] List<EnemySpawner> Spawners;
-    public Consumption consumptoin;
+    [SerializeField] private List<EnemySpawner> Spawners;
+    [SerializeField] private Consumption consumption;
 
     private int numSpawned = 1;
     private float CD = 5f;
-    private float CDL = 0f;
+    private float CDleft = 0f;
 
+    private void OnEnable()
+    {
+        for (int i = 0; i < Spawners.Count; i++)
+        {
+            Spawners[i].transform.position += new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        }
+        SpawnSet();
+    }
     private void FixedUpdate()
     {
-        CDL -= Time.deltaTime;
-        if (CDL <= 0)
+        CDleft -= Time.deltaTime;
+        if (CDleft <= 0)
         {
-            CDL = CD;
+            CDleft = CD;
             numSpawned = 1;
-            numSpawned *= Mathf.FloorToInt(consumptoin.consumedElectricity / 10);
+            numSpawned *= Mathf.FloorToInt(consumption.consumedElectricity / 10);
             numSpawned = Mathf.Clamp(numSpawned, 1, 5);
             SpawnSet();
         }
     }
-
     private void SpawnSet()
     {
         for (int i = 0; i < Spawners.Count; i++)
         {
-            GameObject[] gOs = Spawners[i].Spawn(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], numSpawned);
+            GameObject[] gOs = Spawners[i].Spawn(Prefab[Random.Range(0, Prefab.Count)], numSpawned);
             for (int j = 0; j < gOs.Length; j++)
             {
-                locateEnemy += gOs[j].GetComponent<GenericEnemy>().setEnemy;
-                stopSearch += gOs[j].GetComponent<GenericEnemy>().stopSearch;
-                gOs[j].GetComponent<GenericEnemy>().onDeath += RemoveEnemy;
+                gOs[j].GetComponent<EnemyBase>().onDeath += RemoveEnemy;
             }
         }
     }
-
-    private void RemoveEnemy(GenericEnemy e)
+    private void RemoveEnemy(EnemyBase e)
     {
-        locateEnemy -= e.setEnemy;
-        stopSearch -= e.stopSearch;
-        e.GetComponent<GenericEnemy>().onDeath -= RemoveEnemy;
         Destroy(e.gameObject);
     }
 
-    private void notifyEnemies()
-    {
-        locateEnemy.Invoke();
-    }
-    private void notifyOfEnd()
-    {
-        stopSearch?.Invoke();
-    }
-
-    private void OnEnable()
-    {
-        for(int i = 0; i < Spawners.Count; i++)
-        {
-            Spawners[i].transform.position += new Vector3(UnityEngine.Random.Range(-10,10), 0, UnityEngine.Random.Range(-10,10)); 
-        }
-
-        BuildingManager.buildingDestroyedNotice += notifyEnemies;
-        BuildingManager.ranOutOfBuildingsNotice += notifyOfEnd;
-        SpawnSet();
-    }
-    private void OnDisable()
-    {
-        BuildingManager.buildingDestroyedNotice -= notifyEnemies;
-        BuildingManager.ranOutOfBuildingsNotice -= notifyOfEnd;
-    }
 }

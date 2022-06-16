@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1501928810798561441, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: m_Carve
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2529918085768245976, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
       propertyPath: m_RootOrder
@@ -223,6 +223,4 @@ MonoBehaviour:
   ParticleSystem: {fileID: 25044013266513648}
   generation: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
   consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
-  isInRange: 0
-  isConnectable: 0
   myTurret: {fileID: 5652479318802105684}

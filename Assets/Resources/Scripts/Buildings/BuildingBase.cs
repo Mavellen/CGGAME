@@ -13,19 +13,18 @@ public abstract class BuildingBase : Structure
     protected float energyGeneration = 4f;
 
     private bool wasNotified;
-    private bool isConnectable = false;
+    private bool isConnectable;
 
     protected override void onDestruction()
     {
-        if (Activated)
+        if (isActivated())
         {
-            generation.generatedElectricity -= energyGeneration;
-            consumption.consumedElectricity -= energyConsumption;
+            removeImpact();
         }
         destroyedNotice?.Invoke(this);
     }
 
-    public void notInRange()
+    public void noticeNotifier()
     {
         if (wasNotified)
         {
@@ -34,24 +33,21 @@ public abstract class BuildingBase : Structure
         else
         {
             isConnectable = false;
-            if (Activated)
+            if (isActivated())
             {
-                generation.generatedElectricity -= energyGeneration;
-                consumption.consumedElectricity -= energyConsumption;
+                removeImpact();
             }
-            Activated = false;
+            setActivated(false);
         }
     }
+
     public void receivedNotice()
     {
         isConnectable = true;
         wasNotified = true;
-        if (!Activated && isConnectable)
+        if (!isActivated() && isConnectable)
         {
-            ParticleSystem.Pause();
-            var main = ParticleSystem.main;
-            main.startColor = Color.red;
-            ParticleSystem.Play();
+            colorChange(Color.red);
         }
     }
 
@@ -59,25 +55,35 @@ public abstract class BuildingBase : Structure
     {
         if (isConnectable)
         {
-            if (Activated)
+            if (isActivated())
             {
-                Activated = false;
-                generation.generatedElectricity -= energyGeneration;
-                consumption.consumedElectricity -= energyConsumption;
+                setActivated(false);
+                removeImpact();
             }
             else
             {
                 if ((generation.generatedElectricity + energyGeneration) > (consumption.consumedElectricity + energyConsumption))
                 {
-                    Activated = true;
-                    ParticleSystem.Pause();
-                    var main = ParticleSystem.main;
-                    main.startColor = Color.yellow;
-                    ParticleSystem.Play();
+                    setActivated(true);
+                    colorChange(Color.yellow);
                     generation.generatedElectricity += energyGeneration;
                     consumption.consumedElectricity += energyConsumption;
                 }
             }
         }
+    }
+
+    private void colorChange(Color color)
+    {
+        ParticleSystem.Pause();
+        var main = ParticleSystem.main;
+        main.startColor = color;
+        ParticleSystem.Play();
+    }
+
+    private void removeImpact()
+    {
+        generation.generatedElectricity -= energyGeneration;
+        consumption.consumedElectricity -= energyConsumption;
     }
 }

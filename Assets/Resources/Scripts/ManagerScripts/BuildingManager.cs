@@ -15,14 +15,15 @@ public class BuildingManager : MonoBehaviour
     }
 
     public static event Action updateNavMesh;
-    public static event Action buildingDestroyedNotice;
-    public static event Action ranOutOfBuildingsNotice;
 
     [SerializeField] private List<GameObject> Prefab;
 
     private float numSpawnedInnerRing = 3;
-    private int buldingsLeft = 0;
 
+    private void OnEnable()
+    {
+        SpawnSet();
+    }
     private void SpawnSet()
     {
         float firstRing = numSpawnedInnerRing;
@@ -40,16 +41,15 @@ public class BuildingManager : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Player"))
                     {
+                        i++;
                         continue;
                     }
-                    var hitt = hit.point;
-                    hitt.y += 0.5f;
-                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitt, hit.transform.rotation);
+                    Vector3 hitPoint = hit.point;
+                    hitPoint.y += 0.5f;
+                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Count)], hitPoint, hit.transform.rotation);
                     go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
-                    MainBuilding.notificationExit += go.GetComponent<BuildingBase>().notInRange;
-                    go.GetComponent<BuildingBase>().Activated = false;
+                    MainBuilding.notificationExit += go.GetComponent<BuildingBase>().noticeNotifier;
                     go.GetComponent<BuildingBase>().ParticleSystem.Pause();
-                    buldingsLeft++;
                 }
             }
             firstRing += 3;
@@ -57,28 +57,13 @@ public class BuildingManager : MonoBehaviour
             degrees = 0;
         }
         updateNavMesh?.Invoke();
-        buildingDestroyedNotice?.Invoke();
     }
 
     private void destructionEvent(BuildingBase b)
     {
         b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
-        MainBuilding.notificationExit -= b.notInRange;
+        MainBuilding.notificationExit -= b.noticeNotifier;
         Destroy(b.gameObject);
-        buldingsLeft--;
-        if(buldingsLeft > 0)
-        {
-            buildingDestroyedNotice?.Invoke();
-        }
-        else
-        {
-            ranOutOfBuildingsNotice?.Invoke();
-        }
+        updateNavMesh?.Invoke();
     }
-
-    private void OnEnable()
-    {
-        SpawnSet();
-    }
-
 }

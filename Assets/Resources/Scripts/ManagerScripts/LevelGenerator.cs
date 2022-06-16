@@ -1,6 +1,5 @@
 using Unity.AI.Navigation;
 using UnityEngine;
-using System;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class LevelGenerator : MonoBehaviour
     {
         surface = GetComponent<NavMeshSurface>();
         BuildingManager.updateNavMesh += Build;
-        TreeManager.updateNavMesh += Build;
         Build();
     }
 

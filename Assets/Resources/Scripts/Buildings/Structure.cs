@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public abstract class Structure : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public abstract class Structure : MonoBehaviour
 
     protected float baseHealth = 10f;
     protected float currentHealth = 10f;
-    [System.NonSerialized] public bool Activated = false;
+    private bool Activated;
     protected float multiplier = 1f;
 
     public virtual void Receive(float DMG)
@@ -21,13 +20,9 @@ public abstract class Structure : MonoBehaviour
     {
         return Activated;
     }
-
-    protected virtual void onDestruction()
+    public void setActivated(bool b)
     {
-        Debug.Log("Game Over");
-        LevelGenerator.removeMesh();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        Activated = b;
     }
-
+    protected abstract void onDestruction();
 }

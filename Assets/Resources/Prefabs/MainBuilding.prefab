@@ -117,8 +117,8 @@ MonoBehaviour:
   Turrets:
   - {fileID: 3760525074827998854}
   - {fileID: 3760525074843376318}
-  electricityGeneration: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
-  electricityConsumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
+  generation: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
+  consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
 --- !u!1001 &3252586494941822763
 PrefabInstance:
   m_ObjectHideFlags: 0
