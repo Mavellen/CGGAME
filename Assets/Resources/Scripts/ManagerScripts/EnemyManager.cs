@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
             CDL = CD;
             numSpawned = 1;
             numSpawned *= Mathf.FloorToInt(consumptoin.consumedElectricity / 10);
-            Mathf.Clamp(numSpawned, 1, 6);
+            numSpawned = Mathf.Clamp(numSpawned, 1, 5);
             SpawnSet();
         }
     }

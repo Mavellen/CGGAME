@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("My Collision: " + collision.collider.tag);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<GenericEnemy>().Receive(DMG);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7738152886652702746}
   - component: {fileID: 6889383264866336031}
   - component: {fileID: 2956662252466507776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GrenadeTurret
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 973908019701705493}
   - component: {fileID: 5384413809634663367}
   - component: {fileID: 6049351672324371939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Launcher
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

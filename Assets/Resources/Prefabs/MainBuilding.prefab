@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3252586494740498042}
   - component: {fileID: 3252586494740498043}
   - component: {fileID: 3252586494740498036}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainBuilding
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -114,7 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 5504807323708949672}
-  Activated: 0
   Turrets:
   - {fileID: 3760525074827998854}
   - {fileID: 3760525074843376318}

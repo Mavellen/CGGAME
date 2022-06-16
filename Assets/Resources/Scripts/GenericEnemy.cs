@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using System.Collections.Generic;
-using System.Collections;
 
 public class GenericEnemy : MonoBehaviour
 {
