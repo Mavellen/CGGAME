@@ -73,7 +73,7 @@ public abstract class BuildingBase : Structure
             main.startColor = Color.red;
             ParticleSystem.Play();
         }
-        if (isInRange && isConnectable && ((generation.generatedElectricity + energyGeneration) > (consumption.consumedElectricity + energyConsumption)))
+        if (isInRange && isConnectable)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
