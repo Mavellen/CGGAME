@@ -13,7 +13,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<GameObject> Prefab;
     [SerializeField] private List<EnemySpawner> Spawners;
     [SerializeField] private Consumption consumption;
 
@@ -45,15 +44,16 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < Spawners.Count; i++)
         {
-            GameObject[] gOs = Spawners[i].Spawn(Prefab[Random.Range(0, Prefab.Count)], numSpawned);
+            EnemyBase[] gOs = Spawners[i].Spawn(numSpawned);
             for (int j = 0; j < gOs.Length; j++)
             {
-                gOs[j].GetComponent<EnemyBase>().onDeath += RemoveEnemy;
+                gOs[j].onDeath += RemoveEnemy;
             }
         }
     }
     private void RemoveEnemy(EnemyBase e)
     {
+        e.onDeath -= RemoveEnemy;
         Destroy(e.gameObject);
     }
 

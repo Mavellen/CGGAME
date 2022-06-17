@@ -15,7 +15,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected float CD = 2f;
     protected float CDleft = 0f;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = true;

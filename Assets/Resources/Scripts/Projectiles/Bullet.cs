@@ -11,7 +11,6 @@ public class Bullet : Projectile
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.gameObject.tag);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<GenericEnemy>().Receive(DMG);

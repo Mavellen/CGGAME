@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4026020868392119683}
   - component: {fileID: 7319818993782691597}
   - component: {fileID: 5622440481310526433}
-  - component: {fileID: 3203874380571917882}
+  - component: {fileID: 51533913661748410}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Elite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67fade344deb07e4db253973c06937bc, type: 2}
+  - {fileID: 2100000, guid: f476d1b9e2d5809469cde0cd85640bf4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,7 +139,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3203874380571917882
+--- !u!114 &51533913661748410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,6 +148,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7054280585547177351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb03fce717052247b3b12c14d755043, type: 3}
+  m_Script: {fileID: 11500000, guid: 241210c20557aa84888b11a6eb3b9291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
