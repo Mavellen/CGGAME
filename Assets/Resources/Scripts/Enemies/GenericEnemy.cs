@@ -5,14 +5,10 @@ public class GenericEnemy : EnemyBase
 {
     private Structure building;
 
-    public float distance;
-
     protected override void StartEnemyBehaviour()
     {
         if (building == null) setEnemy();
         trySetClosest();
-        distance = Vector3.Distance(transform.position, building.transform.position);
-        Debug.DrawRay(transform.position, building.transform.position, Color.red);
         if (Vector3.Distance(transform.position, building.transform.position) > Range) Move();
         else
         {

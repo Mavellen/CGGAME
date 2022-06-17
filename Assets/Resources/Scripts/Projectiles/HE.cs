@@ -3,6 +3,13 @@ using UnityEngine;
 public class HE : Projectile
 {
     private float Radius = 3f;
+
+    public override void setRotation(Vector3 Destination, Vector3 velocity)
+    {
+        Destination.y = 0;
+        transform.LookAt(Destination);
+        rb.freezeRotation = true;
+    }
     private void Start()
     {
         DMG *= 2.5f;

@@ -18,6 +18,7 @@ public abstract class EnemyBase : MonoBehaviour
     private void OnEnable()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Agent.updateRotation = true;
     }
     private void FixedUpdate()
     {
@@ -27,6 +28,10 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Health -= DMG;
         if (Health <= 0) onKilled();
+    }
+    public Vector3 getVelocityVector()
+    {
+        return Agent.velocity*Agent.speed;
     }
     private void onKilled()
     {

@@ -11,6 +11,6 @@ public class GrenadeTurret : Turret
     {
         GameObject bulletGO = Instantiate(BulletPrefab, transform.position, transform.rotation);
         HE bullet = bulletGO.GetComponent<HE>();
-        bullet.setRotation(target.transform.position);
+        bullet.setRotation(target.transform.position, target.getVelocityVector());
     }
 }
