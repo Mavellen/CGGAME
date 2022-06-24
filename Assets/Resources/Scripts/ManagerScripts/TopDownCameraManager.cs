@@ -39,8 +39,9 @@ namespace CGGame.Cameras
         {
             if(m_Target)
             {
-                m_Hight = Mathf.Clamp(Mathf.Abs(m_Hight + (Input.mouseScrollDelta.y*2)) ,5 ,30);
-
+                m_Distance = Mathf.Clamp(Mathf.Abs(m_Distance + (Input.mouseScrollDelta.y*2)) ,5 ,20);
+                m_Hight = 1.2f*m_Distance;
+                
                 if (Input.GetKey(KeyCode.W))
                 {
                     m_Target.Translate(Vector3.forward*Time.deltaTime* m_MovmentSpeed);
