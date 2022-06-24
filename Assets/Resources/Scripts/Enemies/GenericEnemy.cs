@@ -5,6 +5,14 @@ public class GenericEnemy : EnemyBase
 {
     private Structure building;
 
+    private AudioSource s;
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        s = GetComponent<AudioSource>();
+        s.Play();
+    }
+
     protected override void StartEnemyBehaviour()
     {
         if (building == null) setEnemy();

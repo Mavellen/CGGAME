@@ -25,6 +25,7 @@ public class HE : Projectile
                 if (c[i].gameObject.TryGetComponent(out GenericEnemy co))
                 {
                     co.Receive(DMG);
+                    AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, collision.transform.position);
                 }
             }
             Destroy(gameObject);
