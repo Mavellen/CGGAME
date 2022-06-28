@@ -32,8 +32,7 @@ public class DropshipManager : MonoBehaviour
                         break;
                     }
                 }
-
-                //if (funds.funds < 40) canSpawn = false;
+                if (funds.funds < 40) canSpawn = false;
                 if (canSpawn)
                 {
                     Quaternion n = Quaternion.FromToRotation(Vector3.up, hit.normal);
