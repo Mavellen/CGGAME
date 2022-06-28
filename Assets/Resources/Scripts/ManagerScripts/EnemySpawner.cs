@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // You could have multiple types of enemies to spawn.
-    // Since we're getting amount spawned from EnemyManager, this doesn't really make sense here since we can't control how many "stronger" enemies we would like to spawn
+    // Since we're getting amount spawned from EnemyManager, this doesn't really make sense here as we can't control how many "stronger" enemies we would like to spawn
     // but this is just here to remind you of what's possible
     [SerializeField] protected SpawnedComponents[] components;
 

@@ -21,6 +21,7 @@ public class BuildingManager : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<DropshipManager>().onDropShip += SpawnFromTile;
         SpawnSet();
     }
     private void SpawnSet()
@@ -38,14 +39,25 @@ public class BuildingManager : MonoBehaviour
                 Vector3 pos = new Vector3(x, 10, z);
                 if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
                 {
-                    if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Player"))
+                    Collider[] c = Physics.OverlapSphere(hit.point, 1.5f);
+                    bool canSpawn = true;
+                    for (int k = 0; k < c.Length; k++)
+                    {
+                        if (c[k].gameObject.TryGetComponent(out Structure co))
+                        {
+                            canSpawn = false;
+                            break;
+                        }
+                    }
+                    if (!canSpawn)
                     {
                         i++;
                         continue;
                     }
+                    Quaternion n = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     Vector3 hitPoint = hit.point;
                     hitPoint.y += 0.5f;
-                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length-1)], hitPoint, hit.transform.rotation);
+                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length - 1)], hitPoint, n);
                     go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
                     MainBuilding.notificationExit += go.GetComponent<BuildingBase>().noticeNotifier;
                     go.GetComponent<BuildingBase>().ParticleSystem.Pause();
@@ -55,28 +67,7 @@ public class BuildingManager : MonoBehaviour
             add = 360 / firstRing;
             degrees = 0;
         }
-        SpawnTiles();
         updateNavMesh?.Invoke();
-    }
-    private void SpawnTiles()
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(-50, 50), 10, UnityEngine.Random.Range(-50, 50));
-            if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
-            {
-                if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Player"))
-                {
-                    i--;
-                    continue;
-                }
-                Vector3 hitPoint = hit.point;
-                hitPoint.y += 0.1f;
-                GameObject go = Instantiate(Prefab[3], hitPoint, hit.transform.rotation);
-                go.transform.SetParent(transform);
-                go.GetComponent<Tile>().constructedTile += SpawnFromTile;
-            }
-        }
     }
 
     private void SpawnFromTile(BuildingBase building)
@@ -84,6 +75,7 @@ public class BuildingManager : MonoBehaviour
         building.destroyedNotice += destructionEvent;
         MainBuilding.notificationExit += building.noticeNotifier;
         building.ParticleSystem.Pause();
+        updateNavMesh?.Invoke();
     }
     private void destructionEvent(BuildingBase b)
     {

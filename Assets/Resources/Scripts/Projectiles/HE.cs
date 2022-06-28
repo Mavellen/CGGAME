@@ -6,7 +6,7 @@ public class HE : Projectile
 
     public override void setRotation(Vector3 Destination, Vector3 velocity)
     {
-        Destination.y = 0;
+        
         transform.LookAt(Destination);
         rb.freezeRotation = true;
     }
@@ -22,7 +22,7 @@ public class HE : Projectile
             Collider[] c = Physics.OverlapSphere(transform.position, Radius);
             for (int i = 0; i < c.Length; i++)
             {
-                if (c[i].gameObject.TryGetComponent(out GenericEnemy co))
+                if (c[i].gameObject.TryGetComponent(out EnemyBase co))
                 {
                     co.Receive(DMG);
                     AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, collision.transform.position);

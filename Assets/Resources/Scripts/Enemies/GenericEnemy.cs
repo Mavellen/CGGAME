@@ -1,16 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GenericEnemy : EnemyBase
 {
     private Structure building;
-
     private AudioSource s;
     protected override void OnEnable()
     {
         base.OnEnable();
         s = GetComponent<AudioSource>();
-        s.Play();
+        StartCoroutine(MovementAudio());
+    }
+
+    IEnumerator MovementAudio(){
+        while(gameObject){
+            yield return new WaitForSeconds(5f);
+            s.Play();
+        }
+        yield return null;
     }
 
     protected override void StartEnemyBehaviour()

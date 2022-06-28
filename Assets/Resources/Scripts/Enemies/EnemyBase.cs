@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    public event Action<EnemyBase> onDeath;
+    public event Action<EnemyBase, int> onDeath;
 
     protected NavMeshAgent Agent;
 
@@ -14,13 +14,14 @@ public abstract class EnemyBase : MonoBehaviour
     protected float VisionRange = 3f;
     protected float CD = 2f;
     protected float CDleft = 0f;
+    protected int awardedCurrency = 1;
 
     protected virtual void OnEnable()
     {
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = true;
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         StartEnemyBehaviour();
     }
@@ -29,15 +30,15 @@ public abstract class EnemyBase : MonoBehaviour
         Health -= DMG;
         if (Health <= 0) onKilled();
     }
-    public Vector3 getVelocityVector()
+    public virtual Vector3 getVelocityVector()
     {
         return Agent.velocity*Agent.speed;
     }
     private void onKilled()
     {
-        onDeath?.Invoke(this);
+        onDeath?.Invoke(this,awardedCurrency);
     }
-    public void setEnemyNotification()
+    public virtual void setEnemyNotification()
     {
         setEnemy();
     }

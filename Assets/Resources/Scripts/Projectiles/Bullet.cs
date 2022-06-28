@@ -13,7 +13,7 @@ public class Bullet : Projectile
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<GenericEnemy>().Receive(DMG);
+            collision.gameObject.GetComponent<EnemyBase>().Receive(DMG);
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Ground"))

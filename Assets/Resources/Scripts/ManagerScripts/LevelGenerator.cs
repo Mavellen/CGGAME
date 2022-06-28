@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     {
         surface = GetComponent<NavMeshSurface>();
         BuildingManager.updateNavMesh += Build;
+        EnemyManager.updateNavMesh += Build;
         Build();
     }
 

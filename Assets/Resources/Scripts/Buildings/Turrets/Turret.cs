@@ -6,7 +6,7 @@ public abstract class Turret : MonoBehaviour
     protected float range = 10f;
     protected float CD = 0.5f;
     protected float CDleft = 0f;
-    protected GenericEnemy target;
+    protected EnemyBase target;
 
     protected void Rotate() 
     {
@@ -32,14 +32,15 @@ public abstract class Turret : MonoBehaviour
     private void SetEnemy()
     {
         Collider[] c = Physics.OverlapSphere(transform.position, range);
-        GenericEnemy d = null;
+        EnemyBase d = null;
         for (int i = 0; i < c.Length; i++)
         {
-            if (c[i].gameObject.TryGetComponent(out GenericEnemy co))
+            if (c[i].gameObject.TryGetComponent(out EnemyBase co))
             {
                 d = co;
                 break;
             }
+
         }
         if (d != null)
         {

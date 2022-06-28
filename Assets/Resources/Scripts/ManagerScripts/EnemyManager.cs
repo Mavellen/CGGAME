@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -13,8 +15,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<EnemySpawner> Spawners;
+    public static event Action updateNavMesh;
+
+    [SerializeField] private Spawnerfier spawnerPrefab;
+    private List<EnemySpawner> Spawners;
     [SerializeField] private Consumption consumption;
+    [SerializeField] private Currency currency;
 
     private int numSpawned = 1;
     private float CD = 5f;
@@ -22,10 +28,8 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        for (int i = 0; i < Spawners.Count; i++)
-        {
-            Spawners[i].transform.position += new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-        }
+        Spawners = new List<EnemySpawner>();
+        SpawnSpawners();
         SpawnSet();
     }
     private void FixedUpdate()
@@ -40,6 +44,30 @@ public class EnemyManager : MonoBehaviour
             SpawnSet();
         }
     }
+
+    private void SpawnSpawners()
+    {
+        Vector3[] positions = new Vector3[]
+        {
+            new Vector3(-60, 20, -50),
+            new Vector3(-60, 20, 100),
+            new Vector3(90, 20, -50),
+            new Vector3(90, 20, 100),
+        };
+        for (int x = 0; x < positions.Length; x++)
+        {
+            positions[x] += new Vector3(Random.Range(-20, 0), 0, Random.Range(-20, 0));
+            if (Physics.Raycast(positions[x], Vector3.down, out RaycastHit hit))
+            {
+                Quaternion n = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Vector3 hitPoint = hit.point;
+                Spawnerfier s = Instantiate(spawnerPrefab, hitPoint, n);
+                s.onDeath += RemoveEnemy;
+                Spawners.Add(s.gameObject.GetComponent<EnemySpawner>());
+            }
+        }
+        updateNavMesh?.Invoke();
+    }
     private void SpawnSet()
     {
         for (int i = 0; i < Spawners.Count; i++)
@@ -51,9 +79,18 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
-    private void RemoveEnemy(EnemyBase e)
+    private void RemoveEnemy(EnemyBase e, int funds)
     {
         e.onDeath -= RemoveEnemy;
+        currency.funds += funds;
+        if (e.TryGetComponent(out EnemySpawner es))
+        {
+            Spawners.Remove(es);
+            if (Spawners.Count == 0)
+            {
+                Debug.Log("WIN");
+            }
+        }
         Destroy(e.gameObject);
     }
 

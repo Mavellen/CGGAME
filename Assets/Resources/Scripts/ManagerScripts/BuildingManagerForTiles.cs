@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -19,7 +18,7 @@ public class BuildingManagerForTiles : MonoBehaviour
         }
     }
     public void selectTower(BuildingBase building)
-    { 
+    {
         selectedBuilding = building;
         setButtonColors(building.name);
     }

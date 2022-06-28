@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class GunTurret : Turret
 {
     AudioSource a;
+    private bool isCooldown;
     private void OnEnable()
     {
         a = GetComponent<AudioSource>();
@@ -12,6 +14,20 @@ public class GunTurret : Turret
         GameObject bulletGO = Instantiate(BulletPrefab, transform.position, transform.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         bullet.setRotation(target.transform.position, target.getVelocityVector());
-        AudioSource.PlayClipAtPoint(a.clip, transform.position);
+        StartCoroutine(GunshotAudio());
+    }
+
+    IEnumerator GunshotAudio(){
+        if (isCooldown)
+        {
+            yield return new WaitForSeconds(3f);
+            isCooldown = false;
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(a.clip, transform.position);
+            isCooldown = true;
+        }
+        
     }
 }

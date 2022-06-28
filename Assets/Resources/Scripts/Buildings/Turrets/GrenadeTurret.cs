@@ -5,7 +5,7 @@ public class GrenadeTurret : Turret
     private void OnEnable()
     {
         range *= 0.8f;
-        CD *= 2f;
+        CD *= 3f;
     }
     protected override void Shoot()
     {
