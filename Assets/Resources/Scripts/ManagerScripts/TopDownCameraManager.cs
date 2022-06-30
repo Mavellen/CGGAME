@@ -19,12 +19,26 @@ namespace CGGame.Cameras
         private float m_Angle = 45f;
 
         [SerializeField]
-        private float m_SmoothSpeed = 0.8f;
+        private float m_MovmentSpeed = 40f;
 
         [SerializeField]
-        private float m_MovmentSpeed = 20f;
+        private float m_RotatingSpeed = 30f;
+
+        [SerializeField]
+        private float minX = -150f;
+
+        [SerializeField]
+        private float minZ = -150f;
+
+        [SerializeField]
+        private float maxX = 1500f;
+
+        [SerializeField]
+        private float maxZ = 150f;
 
         private Vector3 refVelocity;
+        private float inputX;
+        private float inputZ;
         void Start()
         {
             HandleCamera();
@@ -39,32 +53,23 @@ namespace CGGame.Cameras
         {
             if(m_Target)
             {
+                inputX = Input.GetAxis("Horizontal");
+                inputZ = Input.GetAxis("Vertical");
+
                 m_Distance = Mathf.Clamp(Mathf.Abs(m_Distance + (Input.mouseScrollDelta.y*2)) ,5 ,20);
-                m_Hight = 1.2f*m_Distance;
+                m_Hight = Mathf.Pow(1.2f*m_Distance,1.1f);
+
+                m_Target.Translate(new Vector3(inputX,7,inputZ)*Time.deltaTime*m_MovmentSpeed);
+
+                m_Target.SetPositionAndRotation(new Vector3(Mathf.Clamp(m_Target.position.x,minX,maxX),7,Mathf.Clamp(m_Target.position.z,minZ,maxZ)),Quaternion.identity);
                 
-                if (Input.GetKey(KeyCode.W))
-                {
-                    m_Target.Translate(Vector3.forward*Time.deltaTime* m_MovmentSpeed);
-                }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    m_Target.Translate(Vector3.back*Time.deltaTime* m_MovmentSpeed); 
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    m_Target.Translate(Vector3.left*Time.deltaTime* m_MovmentSpeed); 
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    m_Target.Translate(Vector3.right*Time.deltaTime* m_MovmentSpeed); 
-                }
                 if (Input.GetKey(KeyCode.R))
                 {
-                    m_Angle = (m_Angle+0.1f) % 381;
+                    m_Angle = (m_Angle+(m_RotatingSpeed*Time.deltaTime)) % 381;
                 }
                 if (Input.GetKey(KeyCode.F))
                 {
-                    m_Angle = (m_Angle-0.1f) % 381;
+                    m_Angle = (m_Angle-(m_RotatingSpeed*Time.deltaTime)) % 381;
                 }
                 
                 Vector3 worldPosition = (Vector3.forward * -m_Distance) + (Vector3.up * m_Hight);
@@ -74,7 +79,7 @@ namespace CGGame.Cameras
                 Vector3 finalPosition = flat_TargetPosition + rotatedVector;
 
                 m_Target.localEulerAngles = new Vector3(0, m_Angle, 0);
-                transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref refVelocity, m_SmoothSpeed);
+                transform.position = finalPosition;
                 transform.LookAt(flat_TargetPosition);
             }   
         }
