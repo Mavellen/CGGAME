@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Structure : MonoBehaviour
 {
     public RectTransform healthbar;
+    public Light _light;
 
     protected float baseHealth = 10f;
     protected float currentHealth = 10f;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &28397792
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &137540774
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ MonoBehaviour:
         m_MethodName: selectTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: -4903230926045858161, guid: 78cb33cf586ba6e4aa6e081fd990b9c4, type: 3}
+          m_ObjectArgument: {fileID: 4165364099058850476, guid: 3011a6b85952555428f465b78c4c9adc, type: 3}
           m_ObjectArgumentAssemblyTypeName: BuildingBase, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d0ee7f07080fb4f9aa6bea034688c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedBuilding: {fileID: 5627656706935145626, guid: dadfaa4d9e1a14f4398126c1037bbac4, type: 3}
+  selectedBuilding: {fileID: 2460691157537985146, guid: b080b9c6ee75f014b80e518aee358bf4, type: 3}
 --- !u!114 &807677947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,7 +1805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &910761347
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2652,7 +2652,7 @@ MonoBehaviour:
         m_MethodName: selectTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 5627656706935145626, guid: dadfaa4d9e1a14f4398126c1037bbac4, type: 3}
+          m_ObjectArgument: {fileID: 2460691157537985146, guid: b080b9c6ee75f014b80e518aee358bf4, type: 3}
           m_ObjectArgumentAssemblyTypeName: BuildingBase, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2849,7 +2849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1427917418
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3061,7 +3061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1478965254
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3139,7 +3139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1480464111
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3217,7 +3217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1550317929
 Light:
   m_ObjectHideFlags: 0
@@ -3458,7 +3458,7 @@ MonoBehaviour:
         m_MethodName: selectTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1705212363717369757, guid: 6d404d1673370b94f8757fde5b327baa, type: 3}
+          m_ObjectArgument: {fileID: 6603814346979752940, guid: 667753d4d92fe0442ada60da3861874c, type: 3}
           m_ObjectArgumentAssemblyTypeName: BuildingBase, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3520,7 +3520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1622653917
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -4136,7 +4136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &2101194563
 TerrainCollider:
   m_ObjectHideFlags: 0

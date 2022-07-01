@@ -5,15 +5,15 @@ public abstract class BuildingBase : Structure
 {
     public event Action<BuildingBase> destroyedNotice;
 
-    public ParticleSystem ParticleSystem;
+    //public ParticleSystem ParticleSystem;
     public Generation generation;
     public Consumption consumption;
 
     protected float energyConsumption = 7f;
     protected float energyGeneration = 4f;
 
-    private bool wasNotified;
-    private bool isConnectable;
+    public bool wasNotified;
+    public bool isConnectable;
 
     protected override void onDestruction()
     {
@@ -32,6 +32,7 @@ public abstract class BuildingBase : Structure
         }
         else
         {
+            _light.gameObject.SetActive(false);
             isConnectable = false;
             if (isActivated())
             {
@@ -47,7 +48,7 @@ public abstract class BuildingBase : Structure
         wasNotified = true;
         if (!isActivated() && isConnectable)
         {
-            colorChange(Color.red);
+            colorChange(Color.blue);
         }
     }
 
@@ -65,7 +66,7 @@ public abstract class BuildingBase : Structure
                 if ((generation.generatedElectricity + energyGeneration) > (consumption.consumedElectricity + energyConsumption))
                 {
                     setActivated(true);
-                    colorChange(Color.yellow);
+                    colorChange(Color.red);
                     generation.generatedElectricity += energyGeneration;
                     consumption.consumedElectricity += energyConsumption;
                 }
@@ -75,10 +76,8 @@ public abstract class BuildingBase : Structure
 
     private void colorChange(Color color)
     {
-        ParticleSystem.Pause();
-        var main = ParticleSystem.main;
-        main.startColor = color;
-        ParticleSystem.Play();
+        _light.color = color;
+        _light.gameObject.SetActive(true);
     }
 
     private void removeImpact()

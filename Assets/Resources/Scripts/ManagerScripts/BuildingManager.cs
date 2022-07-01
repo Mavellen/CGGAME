@@ -39,7 +39,7 @@ public class BuildingManager : MonoBehaviour
                 Vector3 pos = new Vector3(x, 10, z);
                 if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
                 {
-                    Collider[] c = Physics.OverlapSphere(hit.point, 1.5f);
+                    Collider[] c = Physics.OverlapSphere(hit.point, 3.5f);
                     bool canSpawn = true;
                     for (int k = 0; k < c.Length; k++)
                     {
@@ -60,7 +60,6 @@ public class BuildingManager : MonoBehaviour
                     GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length - 1)], hitPoint, n);
                     go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
                     MainBuilding.notificationExit += go.GetComponent<BuildingBase>().noticeNotifier;
-                    go.GetComponent<BuildingBase>().ParticleSystem.Pause();
                 }
             }
             firstRing += 3;
@@ -74,7 +73,6 @@ public class BuildingManager : MonoBehaviour
     {
         building.destroyedNotice += destructionEvent;
         MainBuilding.notificationExit += building.noticeNotifier;
-        building.ParticleSystem.Pause();
         updateNavMesh?.Invoke();
     }
     private void destructionEvent(BuildingBase b)
