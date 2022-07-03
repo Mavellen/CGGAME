@@ -21,7 +21,7 @@ public class DropshipManager : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Collider[] c = Physics.OverlapSphere(hit.point, 3f);
+                Collider[] c = Physics.OverlapSphere(hit.point, 5f);
                 bool canSpawn = true;
                 for (int i = 0; i < c.Length; i++)
                 {
@@ -32,7 +32,7 @@ public class DropshipManager : MonoBehaviour
                         break;
                     }
                 }
-                if (funds.funds < 40) canSpawn = false;
+                //if (funds.funds < 40) canSpawn = false;
                 if (canSpawn)
                 {
                     Quaternion n = Quaternion.FromToRotation(Vector3.up, hit.normal);
