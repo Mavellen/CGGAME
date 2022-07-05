@@ -10,7 +10,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected float Health = 5f;
     protected float DMG = 1f;
-    protected float Range = 2f;
+    protected float Range = 4f;
     protected float VisionRange = 3f;
     protected float CD = 2f;
     protected float CDleft = 0f;
