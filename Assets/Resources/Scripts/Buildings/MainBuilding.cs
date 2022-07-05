@@ -68,7 +68,6 @@ public class MainBuilding : Structure
         consumption.consumedElectricity = 0f;
         generation.generatedElectricity = baseGeneration;
         LevelGenerator.removeMesh();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene("MainMenu");
     }
 }
