@@ -89,6 +89,9 @@ public class EnemyManager : MonoBehaviour
             Spawners.Remove(es);
             if (Spawners.Count == 0)
             {
+                MainBuilding.notificationGameExit?.Invoke();
+                LevelGenerator.removeMesh();
+                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 SceneManager.LoadScene("MainMenu");
             }
         }

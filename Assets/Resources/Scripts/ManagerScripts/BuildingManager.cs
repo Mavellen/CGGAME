@@ -60,6 +60,8 @@ public class BuildingManager : MonoBehaviour
                     GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length - 1)], hitPoint, n);
                     go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
                     MainBuilding.notificationExit += go.GetComponent<BuildingBase>().noticeNotifier;
+                    MainBuilding.notificationGameExit += go.GetComponent<BuildingBase>().OnGameEnd;
+                    go.GetComponent<BuildingBase>().gameEndNotice += gameEndEvent;
                 }
             }
             firstRing += 3;
@@ -81,5 +83,12 @@ public class BuildingManager : MonoBehaviour
         MainBuilding.notificationExit -= b.noticeNotifier;
         Destroy(b.gameObject);
         updateNavMesh?.Invoke();
+    }
+
+    private void gameEndEvent(BuildingBase b)
+    {
+        b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
+        MainBuilding.notificationExit -= b.noticeNotifier;
+        Destroy(b.gameObject);
     }
 }
