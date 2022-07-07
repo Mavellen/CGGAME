@@ -6,9 +6,12 @@ public class GenericEnemy : EnemyBase
 {
     private Structure building;
     private AudioSource s;
+    private Animator _anim;
+
     protected override void OnEnable()
     {
         base.OnEnable();
+        _anim = GetComponent<Animator>();
         s = GetComponent<AudioSource>();
         StartCoroutine(MovementAudio());
     }
@@ -79,11 +82,13 @@ public class GenericEnemy : EnemyBase
         Quaternion lR = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
         Agent.destination = building.transform.position;
+        _anim.SetBool("Attack",false);
     }
     protected override void Attack()
     {
         building.Receive(DMG);
         CDleft = CD;
+        _anim.SetBool("Attack", true);
     }
 
 }
