@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class Turret : MonoBehaviour
 {
     [SerializeField] protected GameObject BulletPrefab;
-    protected float range = 10f;
-    protected float CD = 0.5f;
+    protected float range = 8f;
+    protected float CD = 0.6f;
     protected float CDleft = 0f;
     protected EnemyBase target;
 

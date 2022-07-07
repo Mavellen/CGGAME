@@ -5,10 +5,17 @@ public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
 
+	GameObject[] creditsObjects;
+
+	GameObject[] noneCreditsObjects;
+
 	void Start () {
 		Time.timeScale = 1;
 		pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+		creditsObjects = GameObject.FindGameObjectsWithTag("ShowInCredits");
+		noneCreditsObjects = GameObject.FindGameObjectsWithTag("HideInCredits");
 		hidePaused();
+		hideCredits();
 	}
 
 	void Update () {
@@ -58,5 +65,27 @@ public class UIManager : MonoBehaviour
 	public void LoadLevel(string level){
 		SceneManager.LoadScene(level);
 		//Application.LoadLevel(level);
+	}
+
+	public void quitGame(){
+		Application.Quit();
+	}
+	
+	public void showCredits(){
+		foreach(GameObject g in creditsObjects){
+			g.SetActive(true);
+		}
+		foreach(GameObject g in noneCreditsObjects){
+			g.SetActive(false);
+		}
+	}
+
+	public void hideCredits(){
+	foreach(GameObject g in creditsObjects){
+		g.SetActive(false);
+	}
+	foreach(GameObject g in noneCreditsObjects){
+		g.SetActive(true);
+	}
 	}
 }

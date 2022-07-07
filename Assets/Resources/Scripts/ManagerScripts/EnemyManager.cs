@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -88,7 +89,10 @@ public class EnemyManager : MonoBehaviour
             Spawners.Remove(es);
             if (Spawners.Count == 0)
             {
-                Debug.Log("WIN");
+                MainBuilding.notificationGameExit?.Invoke();
+                LevelGenerator.removeMesh();
+                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                SceneManager.LoadScene("MainMenu");
             }
         }
         Destroy(e.gameObject);

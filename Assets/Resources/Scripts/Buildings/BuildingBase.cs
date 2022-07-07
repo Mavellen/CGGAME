@@ -4,6 +4,7 @@ using System;
 public abstract class BuildingBase : Structure
 {
     public event Action<BuildingBase> destroyedNotice;
+    public event Action<BuildingBase> gameEndNotice;
 
     //public ParticleSystem ParticleSystem;
     public Generation generation;
@@ -48,7 +49,7 @@ public abstract class BuildingBase : Structure
         wasNotified = true;
         if (!isActivated() && isConnectable)
         {
-            colorChange(Color.blue);
+            colorChange(Color.red);
         }
     }
 
@@ -59,6 +60,7 @@ public abstract class BuildingBase : Structure
             if (isActivated())
             {
                 setActivated(false);
+                colorChange(Color.red);
                 removeImpact();
             }
             else
@@ -66,12 +68,17 @@ public abstract class BuildingBase : Structure
                 if ((generation.generatedElectricity + energyGeneration) > (consumption.consumedElectricity + energyConsumption))
                 {
                     setActivated(true);
-                    colorChange(Color.red);
+                    colorChange(Color.green);
                     generation.generatedElectricity += energyGeneration;
                     consumption.consumedElectricity += energyConsumption;
                 }
             }
         }
+    }
+
+    public void OnGameEnd()
+    {
+        gameEndNotice?.Invoke(this);
     }
 
     private void colorChange(Color color)

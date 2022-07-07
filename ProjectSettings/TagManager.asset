@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - Camera Target
   - ShowOnPause
+  - ShowInCredit
+  - HideInCredits
+  - ShowInCredits
   layers:
   - Default
   - TransparentFX

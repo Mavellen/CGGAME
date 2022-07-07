@@ -16,6 +16,7 @@ public class MainBuilding : Structure
     }
 
     public static event Action notificationExit;
+    public static Action notificationGameExit;
 
     public List<GunTurret> Turrets;
     [SerializeField] private Generation generation;
@@ -67,8 +68,9 @@ public class MainBuilding : Structure
         Debug.Log("Game Over");
         consumption.consumedElectricity = 0f;
         generation.generatedElectricity = baseGeneration;
+        notificationGameExit?.Invoke();
         LevelGenerator.removeMesh();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.LoadScene("MainMenu");
     }
 }
