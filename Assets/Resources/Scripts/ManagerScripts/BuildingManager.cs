@@ -87,8 +87,11 @@ public class BuildingManager : MonoBehaviour
 
     private void gameEndEvent(BuildingBase b)
     {
-        b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
-        MainBuilding.notificationExit -= b.noticeNotifier;
-        Destroy(b.gameObject);
+        if (b != null)
+        {
+            b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
+            MainBuilding.notificationExit -= b.noticeNotifier;
+            Destroy(b.gameObject);
+        }
     }
 }

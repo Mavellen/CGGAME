@@ -12,7 +12,7 @@ public abstract class Turret : MonoBehaviour
     {
         Vector3 dir = target.transform.position - transform.position;
         Quaternion lR = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Euler(0, lR.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(-90, lR.eulerAngles.y, 0);
     }
     protected abstract void Shoot();
     public void StartTurretBehaviour()
