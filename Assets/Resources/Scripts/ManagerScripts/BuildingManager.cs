@@ -57,7 +57,7 @@ public class BuildingManager : MonoBehaviour
                     Quaternion n = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     Vector3 hitPoint = hit.point;
                     hitPoint.y += 0.5f;
-                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length - 1)], hitPoint, n);
+                    GameObject go = Instantiate(Prefab[UnityEngine.Random.Range(0, Prefab.Length)], hitPoint, n);
                     go.GetComponent<BuildingBase>().destroyedNotice += destructionEvent;
                     MainBuilding.notificationExit += go.GetComponent<BuildingBase>().noticeNotifier;
                     MainBuilding.notificationGameExit += go.GetComponent<BuildingBase>().OnGameEnd;
@@ -87,8 +87,11 @@ public class BuildingManager : MonoBehaviour
 
     private void gameEndEvent(BuildingBase b)
     {
-        b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
-        MainBuilding.notificationExit -= b.noticeNotifier;
-        Destroy(b.gameObject);
+        if (b != null)
+        {
+            b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
+            MainBuilding.notificationExit -= b.noticeNotifier;
+            Destroy(b.gameObject);
+        }
     }
 }
