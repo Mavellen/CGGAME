@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23000011032719706}
   - component: {fileID: 4875465203639303752}
   - component: {fileID: 6603814346979752940}
-  - component: {fileID: 3397808512805077951}
+  - component: {fileID: 5386561764344962475}
   m_Layer: 7
   m_Name: GrenadeTurretBuilding
   m_TagString: Building
@@ -121,6 +121,22 @@ MonoBehaviour:
   wasNotified: 0
   isConnectable: 0
   myTurret: {fileID: 8511916583942893799}
+--- !u!208 &5386561764344962475
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010365443526}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.6810002, y: 2.818, z: 4.458}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.609, y: 2.8140001, z: 0.157}
+  m_TimeToStationary: 0.5
 --- !u!1 &6292954532043048762
 GameObject:
   m_ObjectHideFlags: 0
