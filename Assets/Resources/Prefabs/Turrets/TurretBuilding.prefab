@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23000011032719706}
   - component: {fileID: 4875465203639303752}
   - component: {fileID: 2460691157537985146}
+  - component: {fileID: 8878051939779814423}
   m_Layer: 7
   m_Name: TurretBuilding
   m_TagString: Building
@@ -119,7 +120,23 @@ MonoBehaviour:
   consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
   wasNotified: 0
   isConnectable: 0
-  myTurret: {fileID: 5831632795643284288}
+  myTurret: {fileID: 6863937363743362344}
+--- !u!208 &8878051939779814423
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010365443526}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.6810002, y: 2.818, z: 4.458}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.609, y: 2.8140001, z: 0.157}
+  m_TimeToStationary: 0.5
 --- !u!1 &812707854955678076
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 4000011934161418}
   - component: {fileID: 9064374530372810028}
   - component: {fileID: 5595060099040631374}
+  - component: {fileID: 4029149580641776782}
   m_Layer: 7
   m_Name: MainBuilding
   m_TagString: Building
@@ -179,6 +180,22 @@ MonoBehaviour:
   - {fileID: 5620953180804798457}
   generation: {fileID: 11400000, guid: 952b2f631db41a546bb0e9336036680e, type: 2}
   consumption: {fileID: 11400000, guid: 8bd34e0608f28c544b922a9ad8a8193b, type: 2}
+--- !u!208 &4029149580641776782
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010528928412}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1000010842608950
 GameObject:
   m_ObjectHideFlags: 0
