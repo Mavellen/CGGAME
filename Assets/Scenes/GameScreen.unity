@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &28397792
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &137540774
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.23333333
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a5fa5b2b28659414cb51ed42c7c50d1b, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &313799090
 TerrainCollider:
@@ -1608,16 +1608,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4029149580641776782, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Shape
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4029149580641776782, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4029149580641776782, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
       propertyPath: m_Extents.x
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4029149580641776782, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
       propertyPath: m_Extents.y
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4029149580641776782, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
       propertyPath: m_Extents.z
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Size.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
+      propertyPath: m_Center.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9064374530372810028, guid: 916bdd5998dd3c846b5dcf79e13e8669, type: 3}
       propertyPath: m_IsTrigger
@@ -1821,7 +1849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &910761347
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2865,7 +2893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1427917418
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3077,7 +3105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1478965254
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3155,7 +3183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1480464111
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -3536,7 +3564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1622653917
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -4152,7 +4180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &2101194563
 TerrainCollider:
   m_ObjectHideFlags: 0

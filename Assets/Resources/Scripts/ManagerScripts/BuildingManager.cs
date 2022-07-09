@@ -75,14 +75,12 @@ public class BuildingManager : MonoBehaviour
     {
         building.destroyedNotice += destructionEvent;
         MainBuilding.notificationExit += building.noticeNotifier;
-        updateNavMesh?.Invoke();
     }
     private void destructionEvent(BuildingBase b)
     {
         b.GetComponent<BuildingBase>().destroyedNotice -= destructionEvent;
         MainBuilding.notificationExit -= b.noticeNotifier;
         Destroy(b.gameObject);
-        updateNavMesh?.Invoke();
     }
 
     private void gameEndEvent(BuildingBase b)
